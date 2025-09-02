@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "your-server": {
+      "url": "http://localhost:3000/greet",
+      "type": "streamable-http"
+    }
+  }
+}

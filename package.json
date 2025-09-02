@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --watch src --ext ts,tsx,json --exec tsx src/app.ts",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
+    "run-mcp-inspector": "npx @modelcontextprotocol/inspector",
+    "run-mcp-assistant-proxy": "npx @srbhptl39/mcp-superassistant-proxy@latest --config ./config.json",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/app.js",
     "start-stdio": "node dist/std-app.js",
+    
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
     "test": "vitest run",
-    "run-mcp-inspector": "npx @modelcontextprotocol/inspector"
+    "prettify": "prettier --write ."
   },
   "keywords": [],
   "author": "",

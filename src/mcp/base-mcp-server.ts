@@ -4,6 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import z, { type ZodRawShape } from "zod";
 
+
 // Base configuration schema that all MCP servers will share
 export const BaseMCPConfigSchema = z.object({
   name: z.string().min(2).max(100),
@@ -14,7 +15,22 @@ export const BaseMCPConfigSchema = z.object({
   transport: z.union([
     z.instanceof(StreamableHTTPServerTransport), 
     z.instanceof(StdioServerTransport)
-  ]).optional()
+  ]).optional(),
+  serverOptions: z.object({
+    maxConnections: z.number().min(1).default(100),
+    timeout: z.number().min(0).default(30000),
+    capabilities: z.object({
+      tools: z.object({
+        listChanged: z.boolean().default(true)
+      }).optional(),
+      resources: z.object({
+        listChanged: z.boolean().default(true)
+      }).optional(),
+      prompts: z.object({
+        listChanged: z.boolean().default(true)
+      }).optional()
+    }).optional()
+  }).optional()
 });
 
 export type BaseMCPConfig = z.infer<typeof BaseMCPConfigSchema>;
@@ -64,7 +80,8 @@ export abstract class BaseMCPServer extends McpServer {
 
     // Initialize transport based on mode
     this.initializeTransport(validatedParams.transport);
-    
+
+
     // Allow subclasses to register their tools and resources
     this.registerComponents();
   }

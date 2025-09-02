@@ -273,31 +273,31 @@ export class CalculatorMCP extends BaseMCPServer {
 }
 
 // Example usage showing how to create different servers
-async function examples() {
-  // Create a Weather MCP server with HTTP transport
-  const weatherServer = new WeatherMCP({
-    name: "WeatherMCP",
-    version: "2.0.0",
-    host: "localhost",
-    port: 3001,
-    transportMode: "streamable-http",
-    apiKey: "your-weather-api-key"
-  });
+// async function examples() {
+//   // Create a Weather MCP server with HTTP transport
+//   const weatherServer = new WeatherMCP({
+//     name: "WeatherMCP",
+//     version: "2.0.0",
+//     host: "localhost",
+//     port: 3001,
+//     transportMode: "streamable-http",
+//     apiKey: "your-weather-api-key"
+//   });
 
-  // Create a Calculator MCP server with stdio transport
-  const calculatorServer = new CalculatorMCP({
-    name: "CalculatorMCP",
-    version: "1.0.0",
-    host: "localhost",
-    port: 3002,
-    transportMode: "stdio"
-  });
+//   // Create a Calculator MCP server with stdio transport
+//   const calculatorServer = new CalculatorMCP({
+//     name: "CalculatorMCP",
+//     version: "1.0.0",
+//     host: "localhost",
+//     port: 3002,
+//     transportMode: "stdio"
+//   });
 
-  // Start both servers
-  await Promise.all([
-    weatherServer.start(),
-    calculatorServer.start()
-  ]);
+//   // Start both servers
+//   await Promise.all([
+//     weatherServer.start(),
+//     calculatorServer.start()
+//   ]);
 
-  console.log("All servers started successfully!");
-}
+//   console.log("All servers started successfully!");
+// }

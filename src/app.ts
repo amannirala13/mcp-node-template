@@ -4,7 +4,7 @@ import { errorHandler } from './middleware/error';
 import { logger } from './core/logger';
 import e from 'cors';
 import { env } from './core/env';
-import GreetingsMCP from './mcp/greetings-mcp/greetings-mcp.server';
+import {GreetingsMCP} from './mcp/examples/greetings.mcp.server.js';
 import { transport } from 'pino';
 const app = express();
 
@@ -26,6 +26,7 @@ app.post('/greet', async (req, res, next) => {
         return res.status(500).json({ error: 'HTTP transporter is not available' });
     }
     await httpTransporter.handleRequest(req, res, req.body);
+    await next();
 });
 
 app.get('/metrics', metricsHandler);
@@ -35,7 +36,8 @@ app.use(errorHandler);
 function startServer() {
     const PORT = env.PORT || 3000;
     app.listen(PORT, () => {
-        greetingMCP.connect();
+        greetingMCP.start();
+        //greetingMCP.connect();
         logger.info(`Server is running on port ${PORT}`);
     });
 }
