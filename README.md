@@ -1171,7 +1171,7 @@ describe('YourMCP', () => {
 ## License
 
 MIT License - See LICENSE file for details
-
+<!-- 
 ## Support
 
 For issues, questions, or contributions:
@@ -1179,5 +1179,5 @@ For issues, questions, or contributions:
 - Documentation: [your-docs-site](https://docs.your-site.com)
 - Discord: [your-discord](https://discord.gg/your-server)
 
----
+--- -->
 
